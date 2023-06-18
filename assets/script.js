@@ -14,7 +14,9 @@ const slides = [
 	{
 		"image":"slide4.png",
 		"tagLine":"Autocollants <span>avec découpe laser sur mesure</span>"
-	}
+	},
+	
+	
 ]
 
 
@@ -25,15 +27,16 @@ const slides = [
 let numeroSlide = 0;
 console.log(numeroSlide);
 
+let maxSlide = slides.length -1
+console.log(maxSlide)
 
 
 // Création de dots 
 const dotContainer = document.querySelector(".dots");
-for (let index = 0; index < slides.length; index++) {
-	
+for (let index = 0; index < slides.length; index++) {	
 	let dotElement = document.createElement("div")
 	dotContainer.appendChild(dotElement)
-	dotElement.classList.add('dot')
+	dotElement.classList.add('dot');
 }
 
 
@@ -61,25 +64,23 @@ dots[numeroSlide].classList.add("dot_selected");
 
 function next() {	
 	numeroSlide++;
-	if (numeroSlide > 3) {
+	if (numeroSlide > maxSlide) {
 		numeroSlide = 0;
-		dots[3].classList.remove("dot_selected") 		
+		dots[maxSlide].classList.remove("dot_selected") 		
 	}
 	else {
 		dots[numeroSlide - 1].classList.remove("dot_selected") 
 	}
 
 	console.log("Slide Suivante");
-	bannerImage .src = "./assets/images/slideshow/" + slides[numeroSlide].image;
-	description .innerHTML = slides[numeroSlide].tagLine;
-	dots[numeroSlide].classList.add("dot_selected");
+	genererSlide()
 }
 
 // Bouton Précédent
 function prev() {
 	numeroSlide--;
 	if (numeroSlide < 0) {
-		numeroSlide = 3;
+		numeroSlide = maxSlide;
 		dots[0].classList.remove("dot_selected"); 
 	}
 	else {
@@ -87,11 +88,14 @@ function prev() {
 	}
 
 	console.log("Slide Précédente")
-	bannerImage .src = "./assets/images/slideshow/" + slides[numeroSlide].image;
-	description .innerHTML = slides[numeroSlide].tagLine;
-	dots[numeroSlide].classList.add("dot_selected");
+	genererSlide()
 
  };
 
 
+function genererSlide () {
+	bannerImage .src = "./assets/images/slideshow/" + slides[numeroSlide].image;
+	description .innerHTML = slides[numeroSlide].tagLine;
+	dots[numeroSlide].classList.add("dot_selected");
 
+}
