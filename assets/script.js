@@ -25,8 +25,22 @@ const slides = [
 let numeroSlide = 0;
 console.log(numeroSlide);
 
+
+
+// Création de dots 
+const dotContainer = document.querySelector(".dots");
+for (let index = 0; index < slides.length; index++) {
+	
+	let dotElement = document.createElement("div")
+	dotContainer.appendChild(dotElement)
+	dotElement.classList.add('dot')
+}
+
+
+
 //Gestion des dots
 const dots = document.querySelectorAll(".dot");
+
 
 
 //Gestion des boutons
